@@ -1,66 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+For your *Farm 2 Plate* project, a clear and well-structured README file is essential for anyone setting up the project. Here's an outline of what to include:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# Farm 2 Plate
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A Laravel-based project for managing and ordering recipes, with an admin dashboard for recipe management and a user side for browsing and adding to the cart.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
+- [Installation](#installation)
+- [Environment Setup](#environment-setup)
+- [Database Configuration](#database-configuration)
+- [API Setup](#api-setup)
+- [Running the Application](#running-the-application)
+- [Admin Dashboard](#admin-dashboard)
+- [Features](#features)
+- [Testing](#testing)
+- [License](#license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation
 
-## Learning Laravel
+To set up the project locally, follow these steps:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd farm-2-plate
+    ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Install dependencies:**
+    Ensure you have Composer and Node.js installed, then run:
+    ```bash
+    composer install
+    npm install
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Set up the environment file:**
+    Copy `.env.example` to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
 
-## Laravel Sponsors
+4. **Generate the application key:**
+    ```bash
+    php artisan key:generate
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Environment Setup
 
-### Premium Partners
+In the `.env` file, set the following:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **APP_NAME** = Farm 2 Plate
+- **APP_ENV** = local
+- **APP_KEY** = base64:your_generated_key
+- **APP_DEBUG** = true
+- **APP_URL** = http://localhost
 
-## Contributing
+For database configuration, update:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **DB_CONNECTION** = mysql
+- **DB_HOST** = 127.0.0.1
+- **DB_PORT** = 3306
+- **DB_DATABASE** = your_database_name
+- **DB_USERNAME** = your_database_username
+- **DB_PASSWORD** = your_database_password
 
-## Code of Conduct
+## Database Configuration
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Run migrations:**
+    ```bash
+    php artisan migrate
+    ```
 
-## Security Vulnerabilities
+2. **Seed the database** (optional, for default data):
+    ```bash
+    php artisan db:seed
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## API Setup
+
+1. Ensure you have Laravel Sanctum set up for API authentication.
+2. If using a third-party service for APIs (e.g., Stripe for payments), configure it in `.env`:
+    ```bash
+    STRIPE_KEY=your_stripe_key
+    ```
+
+## Running the Application
+
+1. **Start the development server:**
+    ```bash
+    php artisan serve
+    ```
+    This will start the application on `http://localhost:8000`.
+
+2. **Front-end setup:**
+    Run the following to compile assets:
+    ```bash
+    npm run dev
+    ```
+
+## Admin Dashboard
+
+Admins can access the dashboard by logging in with the admin credentials. To view and manage recipes, use the Filament-powered dashboard at:
+
+- **Login URL**: `/admin/login`
+- **Dashboard URL**: `/admin`
+
+## Features
+
+- User authentication using Laravel Jetstream.
+- Recipe management via an admin dashboard with Filament.
+- Searchable recipe page with vegetarian/non-vegetarian filters.
+- Cart functionality for users to add recipes.
+- Ability for users to rate and review recipes.
+- Community page for users to share photos and comments.
+
+
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to adjust and add any specific setup instructions based on how you've structured the project!
