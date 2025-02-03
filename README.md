@@ -1,6 +1,3 @@
-For your *Farm 2 Plate* project, a clear and well-structured README file is essential for anyone setting up the project. Here's an outline of what to include:
-
----
 
 # Farm 2 Plate
 
