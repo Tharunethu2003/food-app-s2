@@ -95,6 +95,13 @@ For database configuration, update:
     npm run dev
     ```
 
+    To create the storage link for your project, run the following Artisan command:
+
+````bash
+php artisan storage:link
+````
+This will create a symbolic link from public/storage to storage/app/public, allowing you to serve files (like images) stored in the storage directory publicly.
+
 ## Admin Dashboard
 
 Admins can access the dashboard by logging in with the admin credentials. To view and manage recipes, use the Filament-powered dashboard at:
@@ -113,4 +120,4 @@ Admins can access the dashboard by logging in with the admin credentials. To vie
 
 
 
-## License
+
