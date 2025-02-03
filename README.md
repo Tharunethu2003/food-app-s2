@@ -117,9 +117,3 @@ Admins can access the dashboard by logging in with the admin credentials. To vie
 
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to adjust and add any specific setup instructions based on how you've structured the project!
